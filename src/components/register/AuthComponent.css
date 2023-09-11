@@ -1,0 +1,40 @@
+
+  /* AuthComponent.css */
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('./background.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* .auth-form-container {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px); /* Apply a blur effect to the background */
+  /* transition: transform 0.3s ease-in-out; */
+/* } */ */
+
+.auth-form-container.signup {
+  transform: translateX(-100%);
+}
+
+.auth-form-container.login {
+  transform: translateX(0);
+}
+
+
+.auth-form-container {
+  max-width: 400px; /* Adjust the max-width as needed */
+  margin: 0 auto;   /* Center the form horizontally */
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease-in-out;
+}
