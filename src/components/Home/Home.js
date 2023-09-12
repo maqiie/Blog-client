@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css"; // Import your CSS file if needed
@@ -99,9 +95,6 @@ function Home() {
   ];
 
   return (
-<<<<<<< HEAD
-  
-=======
   //   <div className="wrapper">
   //     <h1>"Empowering Perspectives, Inspiring Lives."</h1>
   //     <input type="text" className="search-input" placeholder="Search" />
@@ -134,7 +127,6 @@ function Home() {
   //     </div>
   //   </div>
   // );
->>>>>>> main
   <div className="wrapper">
       <h1>"Empowering Perspectives, Inspiring Lives."</h1>
       <input type="text" className="search-input" placeholder="Search" />
@@ -150,25 +142,14 @@ function Home() {
                 className="front"
                 style={{ backgroundImage: `url(${card.image})` }}
               >
-<<<<<<< HEAD
-                
-=======
->>>>>>> main
                   <div className="inner">
                     <p>{card.title}</p>
                     <span>Start Blog</span>
                   </div>
-<<<<<<< HEAD
-               
-              </div>
-              <div className="back">
-              <Link to={card.link} className="card-link">
-=======
               </div>
               <div className="back">
               <Link to={card.link} className="card-link">
 
->>>>>>> main
                 <div className="inner">
                   <p>{card.description}</p>
                 </div>
