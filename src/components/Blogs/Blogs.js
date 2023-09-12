@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from "react";
 import "font-awesome/css/font-awesome.min.css";
-
 import axios from "axios";
 import "./Blogs.css";
 
+
 const Blog = () => {
   const [posts, setPosts] = useState([]);
+  const [expandedPostId, setExpandedPostId] = useState(null); // Track the expanded post
   const authToken = localStorage.getItem("authToken");
   const apiBaseUrl = "http://localhost:3001";
 
@@ -97,17 +98,35 @@ const Blog = () => {
     } catch (error) {
       console.error("Error disliking post:", error);
     }
+  }; // Move this closing curly brace to here
+  
+  const handlePostClick = (postId) => {
+    // Toggle the expanded state of the post
+    if (postId === expandedPostId) {
+      // Collapse the post if it's already expanded
+      setExpandedPostId(null);
+    } else {
+      // Expand the clicked post
+      setExpandedPostId(postId);
+    }
   };
+  
 
   return (
     <div className="blog">
       <h2>Latest Blog Posts</h2>
       <div className="post-list">
         {posts.map((post, index) => (
-          <div key={index} className="post">
+          <div
+            key={index}
+            className={`post ${post.id === expandedPostId ? "expanded" : ""}`}
+          >
             <h3 className="post-title">{post.title}</h3>
             <p className="post-author">By {post.author}</p>
-            <div className="post-content">{post.content}</div>
+            <div className="post-content">
+              {post.id === expandedPostId ? post.content : post.content.slice(0, 200) + '...'}
+              {/* Display only a portion of content if not expanded */}
+            </div>
             {post.image_url && (
               <img
                 src={`${apiBaseUrl}${post.image_url}`}
@@ -127,6 +146,10 @@ const Blog = () => {
                 <span>{post.dislikes_count}</span>
               </button>
             </div>
+            {/* Add a "Read More" link to expand/collapse the post */}
+            <div className="read-more" onClick={() => handlePostClick(post.id)}>
+              {post.id === expandedPostId ? "Read Less" : "Read More"}
+            </div>
           </div>
         ))}
       </div>
@@ -135,4 +158,5 @@ const Blog = () => {
 };
 
 export default Blog;
+
 

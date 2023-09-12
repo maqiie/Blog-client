@@ -18,6 +18,7 @@
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
+  height: 100%; /* Ensure all posts have the same height */
 }
 
 .post:hover {
@@ -27,7 +28,7 @@
 .post-title {
   font-size: 24px;
   margin-bottom: 10px;
-  color: #333; 
+  color: #333;
 }
 
 .post-author {
@@ -49,19 +50,16 @@
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
-    
 
-
-
-
-    /* Blogs.css */
 /* Blogs.css */
+
 .thumbs-up-icon,
 .thumbs-down-icon {
   color: #007bff; /* Default thumbs-up color */
   font-size: 24px; /* Adjust the font size as needed */
   margin-right: 10px; /* Add spacing between the icon and text */
-  transition: color 0.2s ease; /* Add transition for color */
+  transition: color 0.2s ease, transform 0.2s ease; /* Add transitions for color and transform */
+  cursor: pointer; /* Add pointer cursor to indicate interactivity */
 }
 
 .thumbs-down-icon {
@@ -72,14 +70,12 @@
 .thumbs-up-icon:hover {
   color: #0056b3; /* Change color on hover */
   transform: scale(1.2); /* Scale the icon on hover */
-  transition: transform 0.2s ease, color 0.2s ease; /* Add transitions for transform and color */
 }
 
 /* Add hover effect for thumbs-down */
 .thumbs-down-icon:hover {
   color: #c82333; /* Change color on hover */
   transform: scale(1.2); /* Scale the icon on hover */
-  transition: transform 0.2s ease, color 0.2s ease; /* Add transitions for transform and color */
 }
 
 /* Add the clicked animation as before */
@@ -87,3 +83,71 @@
 .thumbs-down-icon.clicked {
   transform: scale(1.2); /* Scale the icon when it's clicked */
 }
+
+/* Style the likes and dislikes count */
+.likes-count,
+.dislikes-count {
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+/* Add background color to dislikes count for better visibility */
+.dislikes-count {
+  background-color: #c82333;
+  color: #fff; /* Text color for dislikes count */
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+
+
+/* Blog.css */
+
+
+/* Blog.css */
+
+/* Add a class for expanded posts */
+.post.expanded {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: white; /* Set the background color for the expanded post */
+  overflow: auto; /* Enable scrolling for the expanded content if it overflows */
+  padding: 20px; /* Add padding as needed */
+}
+
+
+
+
+/* Hide overflow for collapsed posts and add a "Read More" link */
+.post:not(.expanded) {
+  overflow: hidden;
+  position: relative;
+}
+
+.post:not(.expanded)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Style the "Read More" link */
+.read-more {
+  display: block;
+  text-align: right;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+ 
