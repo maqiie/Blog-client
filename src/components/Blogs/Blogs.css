@@ -4,6 +4,10 @@
   padding: 20px;
   background-color: #f9f9f9;
 }
+.h2{
+  text-decoration-line: underline;
+  margin-bottom: 20x;
+}
 
 .post-list {
   display: grid;
@@ -50,6 +54,28 @@
   border-radius: 5px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+
+
+
+/* Blogs.css */
+
+/* Your existing styles here */
+
+/* Add a media query for larger screens */
+@media (min-width: 768px) {
+  .post-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjust as needed */
+  }
+
+  .post {
+    width: calc(33.33% - 20px); /* Adjust the width and margin as needed */
+    margin-bottom: 20px;
+  }
+}
+
 
 /* Blogs.css */
 
@@ -220,69 +246,89 @@
 
 
 
-/* Add these styles to your Blogs.css or your preferred stylesheet */
 
-/* Style the comment input container */
-.comments-section {
 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
 
-/* Style the comment input field */
-.comments-section input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-/* Style for the comments section */
+/* <-------cssss for the comments=========> */
+/* Comment Section Styles */
 .comments-section {
   margin-top: 20px;
-  border-top: 1px solid #ccc;
-  padding-top: 20px;
+  padding: 20px;
+  background-color: #fff; /* Background color */
+  border: 1px solid #e0e0e0; /* Border color */
+  border-radius: 8px;
 }
 
-/* Style for the comments header */
+/* Comment Header Styles */
 .comments-section h4 {
   font-size: 18px;
   margin-bottom: 10px;
   color: #333;
 }
 
-/* Style for the comment list */
+/* Comment List Styles */
 .comments-section ul {
   list-style: none;
   padding: 0;
 }
 
-/* Style for individual comments */
+/* Individual Comment Styles */
 .comments-section li {
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  background-color: #f4f4f4; /* Comment background color */
+  border-radius: 8px;
 }
 
-/* Style for the comment content */
+/* Comment Content Styles */
 .comments-section li p {
   font-size: 16px;
   color: #333;
   margin: 0;
 }
 
-/* Style for the input field to add a new comment */
+/* Input Field to Add a New Comment Styles */
 .comments-section input[type="text"] {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: none;
+  border-bottom: 2px solid #333; /* Underline effect */
+  border-radius: 0;
+  font-size: 16px;
+}
+
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .comments-section {
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  .comments-section h4 {
+    font-size: 16px;
+  }
+
+  .comments-section li {
+    margin-bottom: 15px;
+    padding: 10px;
+  }
+
+  .comments-section li p {
+    font-size: 14px;
+  }
+
+  .comments-section input[type="text"] {
+    font-size: 14px;
+  }
+
+  .comments-section button.bookmarkBtn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
 }
 
 
