@@ -18,6 +18,7 @@ const Blog = ({ currentUserId }) => {
 
   useEffect(() => {
     // Fetch blog posts with their like and dislike counts
+
     axios
       .get(`${apiBaseUrl}/posts`, {
         headers: {
@@ -32,6 +33,7 @@ const Blog = ({ currentUserId }) => {
         console.error("Error fetching posts:", error);
       });
   }, [authToken, apiBaseUrl]);
+
   const handleLikePost = async (postId) => {
     try {
       // Send a POST request to like the post
@@ -138,10 +140,25 @@ const Blog = ({ currentUserId }) => {
   //       userId: comment.user_id, // Extract the user ID
   //     }));
 
-  //     // Update the comments state while preserving existing comments
+  //     // Initialize comment likes in the state
+  //     const initialCommentLikes = commentsWithUserIds.reduce(
+  //       (likes, comment) => ({
+  //         ...likes,
+  //         [comment.id]: comment.likes_count || 0,
+  //       }),
+  //       {}
+  //     );
+
+  //     // Update the comments state while preserving existing comments and initialize comment likes
   //     setComments((prevComments) => ({
   //       ...prevComments,
   //       [postId]: commentsWithUserIds,
+  //     }));
+
+  //     // Initialize comment likes state
+  //     setCommentLikes((prevLikes) => ({
+  //       ...prevLikes,
+  //       [postId]: initialCommentLikes,
   //     }));
   //   } catch (error) {
   //     console.error("Error fetching comments:", error);
@@ -158,30 +175,43 @@ const Blog = ({ currentUserId }) => {
           },
         }
       );
-
+  
       const commentsData = response.data; // Assuming the response contains an array of comments
-
+  
+      // Initialize comment likes in the state
+      const initialCommentLikes = {};
+  
+      // Iterate through the comments and fetch the likes count for each comment
+      for (const comment of commentsData) {
+        // Fetch the likes count for the comment
+        const likeResponse = await axios.get(
+          `${apiBaseUrl}/posts/${postId}/comments/${comment.id}/likes`,
+          {
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+              Accept: "application/json",
+            },
+          }
+        );
+  
+        const likesCount = likeResponse.data.likesCount;
+  
+        // Update the initialCommentLikes object with the likes count
+        initialCommentLikes[comment.id] = likesCount;
+      }
+  
       // Map the comments to extract user IDs
       const commentsWithUserIds = commentsData.map((comment) => ({
         ...comment,
         userId: comment.user_id, // Extract the user ID
       }));
-
-      // Initialize comment likes in the state
-      const initialCommentLikes = commentsWithUserIds.reduce(
-        (likes, comment) => ({
-          ...likes,
-          [comment.id]: comment.likes_count || 0,
-        }),
-        {}
-      );
-
+  
       // Update the comments state while preserving existing comments and initialize comment likes
       setComments((prevComments) => ({
         ...prevComments,
         [postId]: commentsWithUserIds,
       }));
-
+  
       // Initialize comment likes state
       setCommentLikes((prevLikes) => ({
         ...prevLikes,
@@ -191,6 +221,8 @@ const Blog = ({ currentUserId }) => {
       console.error("Error fetching comments:", error);
     }
   };
+  
+  
 
   const handleCommentSubmit = async (postId) => {
     try {
@@ -219,6 +251,49 @@ const Blog = ({ currentUserId }) => {
       console.error("Error adding comment:", error);
     }
   };
+
+  // const handleLikeComment = async (postId, commentId) => {
+  //   try {
+  //     // Send a POST request to like the comment
+  //     await axios.post(
+  //       `${apiBaseUrl}/posts/${postId}/comments/${commentId}/like`,
+
+  //       null,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${authToken}`,
+  //         },
+  //       }
+  //     );
+
+  //     const likeResponse = await axios.get(
+  //       `${apiBaseUrl}/posts/${postId}/comments/${commentId}/likes`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${authToken}`,
+  //           Accept: "application/json", // Make sure to include this header
+  //         },
+  //       }
+  //     );
+
+  //     console.log("Like Response:", likeResponse.data);
+
+  //     const updatedLikeCount = likeResponse.data.likesCount;
+
+  //     // Update the UI to reflect the new like count for the comment
+  //     setCommentLikes((prevLikes) => ({
+  //       ...prevLikes,
+  //       [postId]: {
+  //         ...prevLikes[postId],
+  //         [commentId]: updatedLikeCount,
+  //       },
+  //     }));
+  //   } catch (error) {
+  //     console.error("Error liking comment:", error);
+  //   }
+  // };
+
+
   const handleLikeComment = async (postId, commentId) => {
     try {
       // Send a POST request to like the comment
@@ -231,15 +306,20 @@ const Blog = ({ currentUserId }) => {
           },
         }
       );
-
-      // Fetch the updated like count for the comment
+  
+      // Fetch the updated likes count after liking the comment
       const likeResponse = await axios.get(
-        `${apiBaseUrl}/posts/${postId}/comments/${commentId}/likes`
+        `${apiBaseUrl}/posts/${postId}/comments/${commentId}/likes`,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+            Accept: "application/json",
+          },
+        }
       );
-
+  
       const updatedLikeCount = likeResponse.data.likesCount;
-
-      // Update the UI to reflect the new like count for the comment
+  
       setCommentLikes((prevLikes) => ({
         ...prevLikes,
         [postId]: {
@@ -247,11 +327,21 @@ const Blog = ({ currentUserId }) => {
           [commentId]: updatedLikeCount,
         },
       }));
+      
+      // Optionally, persist the updated likes count in localStorage
+      const updatedCommentLikes = {
+        ...commentLikes,
+        [postId]: {
+          ...commentLikes[postId],
+          [commentId]: updatedLikeCount,
+        },
+      };
+      localStorage.setItem("commentLikes", JSON.stringify(updatedCommentLikes));
     } catch (error) {
       console.error("Error liking comment:", error);
     }
   };
-
+  
   const handleDeleteComment = async (postId, commentId) => {
     try {
       // Send a DELETE request to remove the comment
@@ -327,14 +417,16 @@ const Blog = ({ currentUserId }) => {
                     comments[post.id].map((comment, commentIndex) => (
                       <li key={commentIndex}>
                         <div className="comment-actions">
-                          
-                          <label class="container1"
-                          onClick={() =>
-                            handleLikeComment(post.id, comment.id)
-                          }
+                          <button
+                            class="container1"
+                            onClick={() =>
+                              handleLikeComment(post.id, comment.id)
+                            }
                           >
-                             Likes{" "}
-                            <span>{commentLikes[post.id][comment.id]}</span>
+                            Likes{" "}
+                            <span>
+                              {commentLikes[post.id]?.[comment.id] || 0}
+                            </span>
                             <input checked="checked" type="checkbox" />
                             <div class="checkmark">
                               <svg viewBox="0 0 256 256">
@@ -351,7 +443,7 @@ const Blog = ({ currentUserId }) => {
                                 ></path>
                               </svg>
                             </div>
-                          </label>
+                          </button>
                         </div>
                         {comment.content}
                         {console.log(
