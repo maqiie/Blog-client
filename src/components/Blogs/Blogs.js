@@ -118,24 +118,7 @@ const Blog = ({ currentUserId }) => {
     }
   };
 
-  // const fetchComments = async (postId) => {
-  //   try {
-  //     const response = await axios.get(
-  //       `${apiBaseUrl}/posts/${postId}/comments`,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${authToken}`,
-  //           Accept: "application/json",
-  //         },
-  //       }
-  //     );
-
-  //     // Set the comments for the specific post
-  //     setComments({ ...comments, [postId]: response.data });
-  //   } catch (error) {
-  //     console.error("Error fetching comments:", error);
-  //   }
-  // };
+  
   const fetchComments = async (postId) => {
     try {
       const response = await axios.get(
@@ -196,14 +179,17 @@ const Blog = ({ currentUserId }) => {
   const handleDeleteComment = async (postId, commentId) => {
     try {
       // Send a DELETE request to remove the comment
-      await axios.delete(`${apiBaseUrl}/posts/${postId}/comments/${commentId}`, {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
-  
+      await axios.delete(
+        `${apiBaseUrl}/posts/${postId}/comments/${commentId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
+
       console.log("Comment deleted successfully");
-  
+
       // Update the UI to remove the deleted comment
       setComments((prevComments) => ({
         ...prevComments,
@@ -218,7 +204,7 @@ const Blog = ({ currentUserId }) => {
 
   return (
     <div className="blog">
-      <h2  className="h2">Latest Blog Posts</h2>
+      <h2 className="h2">Latest Blog Posts</h2>
       <div className="post-list">
         {posts.map((post, index) => (
           <div
@@ -259,8 +245,7 @@ const Blog = ({ currentUserId }) => {
                 <h4>Comments:</h4>
                 {console.log("Expanded Post ID:", expandedPostId)}
                 {console.log("Current Post ID:", post.id)}
-                {/* // Inside your Blog component where you render the comments and
-                delete button */}
+
                 <ul>
                   {comments[post.id] &&
                     comments[post.id].map((comment, commentIndex) => (
@@ -271,32 +256,56 @@ const Blog = ({ currentUserId }) => {
                           comment.user_id,
                           currentUserId
                         )}
-                        {/* Check if comment.user_id is equal to currentUserId */}
-                        {comment.userId === currentUserId ||
-                          (!comment.content && (
-                            <div className="comment-actions">
-                              {console.log(
-                                "Delete button should be displayed here"
-                              )}
-                              <button
-                                className="normal-button"
-                                onClick={() =>
-                                  handleDeleteComment(post.id, comment.id)
-                                }
-                              >
-                                Delete
-                              </button>
+                        {(comment.userId === currentUserId ||
+                          !comment.content) && (
+                          <div className="comment-actions">
+                            {console.log(
+                              "Delete button should be displayed here"
+                            )}
 
-                              <div className="div">
-                                <small>
-                                  <i></i>
-                                </small>
-                              </div>
+                            <button
+                              class="btn"
+                              onClick={() =>
+                                handleDeleteComment(post.id, comment.id)
+                              }
+                            >
+                              <p class="paragraph"> delete </p>
+                              <span class="icon-wrapper">
+                                <svg
+                                  class="icon"
+                                  width="30px"
+                                  height="30px"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M6 7V18C6 19.1046 6.89543 20 8 20H16C17.1046 20 18 19.1046 18 18V7M6 7H5M6 7H8M18 7H19M18 7H16M10 11V16M14 11V16M8 7V5C8 3.89543 8.89543 3 10 3H14C15.1046 3 16 3.89543 16 5V7M8 7H16"
+                                    stroke="#000000"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  ></path>
+                                </svg>
+                              </span>
+                            </button>
+                            <div class="div">
+                              <small>
+                                <i></i>
+                              </small>
                             </div>
-                          ))}
+
+                            <div className="div">
+                              <small>
+                                <i></i>
+                              </small>
+                            </div>
+                          </div>
+                        )}
                       </li>
                     ))}
                 </ul>
+
                 <div>
                   <input
                     type="text"
