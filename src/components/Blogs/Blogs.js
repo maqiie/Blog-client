@@ -324,17 +324,14 @@ const Blog = () => {
   const handleDeleteComment = async (postId, commentId) => {
     try {
       // Send a DELETE request to remove the comment
-      await axios.delete(
-        `${apiBaseUrl}/posts/${postId}/comments/${commentId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
-
+      await axios.delete(`${apiBaseUrl}/posts/${postId}/comments/${commentId}`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+  
       console.log("Comment deleted successfully");
-
+  
       // Update the UI to remove the deleted comment
       setComments((prevComments) => ({
         ...prevComments,
@@ -346,10 +343,11 @@ const Blog = () => {
       console.error("Error deleting comment:", error);
     }
   };
+  
 
   return (
     <div className="blog">
-      <h2 className="h2">Latest Blog Posts</h2>
+      <h2  className="h2">Latest Blog Posts</h2>
       <div className="post-list">
         {posts.map((post, index) => (
           <div
@@ -388,34 +386,13 @@ const Blog = () => {
             {post.id === expandedPostId && (
               <div className="comments-section">
                 <h4>Comments:</h4>
-                {/* <ul>
+                <ul>
                   {comments[post.id] &&
                     comments[post.id].map((comment, commentIndex) => (
                       <li key={commentIndex}>{comment.content}</li>
                       
                     ))}
-                </ul> */}
-                <ul>
-                  {comments[post.id] &&
-                    comments[post.id].map((comment, commentIndex) => (
-                      <li key={commentIndex}>
-                        {comment.content}
-                        {comment.userId === currentUserId && (
-                          <div className="comment-actions">
-                            <button
-                              className="bin"
-                              onClick={() =>
-                                handleDeleteComment(post.id, comment.id)
-                              }
-                            >
-                              🗑
-                            </button>
-                          </div>
-                        )}
-                      </li>
-                    ))}
                 </ul>
-
                 <div>
                   <input
                     type="text"
