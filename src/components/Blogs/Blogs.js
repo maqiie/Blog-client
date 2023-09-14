@@ -8,7 +8,7 @@ const Blog = ({ currentUserId }) => {
   const [expandedPostId, setExpandedPostId] = useState(null);
   const authToken = localStorage.getItem("authToken");
   const apiBaseUrl = "http://localhost:3001";
-  // const [currentUserId, setCurrentUserId] = useState(null);
+  const [commentLikes, setCommentLikes] = useState({});
 
   // State to store comments for each post
   const [comments, setComments] = useState({});
@@ -118,7 +118,35 @@ const Blog = ({ currentUserId }) => {
     }
   };
 
-  
+  // const fetchComments = async (postId) => {
+  //   try {
+  //     const response = await axios.get(
+  //       `${apiBaseUrl}/posts/${postId}/comments`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${authToken}`,
+  //           Accept: "application/json",
+  //         },
+  //       }
+  //     );
+
+  //     const commentsData = response.data; // Assuming the response contains an array of comments
+
+  //     // Map the comments to extract user IDs
+  //     const commentsWithUserIds = commentsData.map((comment) => ({
+  //       ...comment,
+  //       userId: comment.user_id, // Extract the user ID
+  //     }));
+
+  //     // Update the comments state while preserving existing comments
+  //     setComments((prevComments) => ({
+  //       ...prevComments,
+  //       [postId]: commentsWithUserIds,
+  //     }));
+  //   } catch (error) {
+  //     console.error("Error fetching comments:", error);
+  //   }
+  // };
   const fetchComments = async (postId) => {
     try {
       const response = await axios.get(
@@ -139,10 +167,25 @@ const Blog = ({ currentUserId }) => {
         userId: comment.user_id, // Extract the user ID
       }));
 
-      // Update the comments state while preserving existing comments
+      // Initialize comment likes in the state
+      const initialCommentLikes = commentsWithUserIds.reduce(
+        (likes, comment) => ({
+          ...likes,
+          [comment.id]: comment.likes_count || 0,
+        }),
+        {}
+      );
+
+      // Update the comments state while preserving existing comments and initialize comment likes
       setComments((prevComments) => ({
         ...prevComments,
         [postId]: commentsWithUserIds,
+      }));
+
+      // Initialize comment likes state
+      setCommentLikes((prevLikes) => ({
+        ...prevLikes,
+        [postId]: initialCommentLikes,
       }));
     } catch (error) {
       console.error("Error fetching comments:", error);
@@ -176,6 +219,39 @@ const Blog = ({ currentUserId }) => {
       console.error("Error adding comment:", error);
     }
   };
+  const handleLikeComment = async (postId, commentId) => {
+    try {
+      // Send a POST request to like the comment
+      await axios.post(
+        `${apiBaseUrl}/posts/${postId}/comments/${commentId}/like`,
+        null,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
+
+      // Fetch the updated like count for the comment
+      const likeResponse = await axios.get(
+        `${apiBaseUrl}/posts/${postId}/comments/${commentId}/likes`
+      );
+
+      const updatedLikeCount = likeResponse.data.likesCount;
+
+      // Update the UI to reflect the new like count for the comment
+      setCommentLikes((prevLikes) => ({
+        ...prevLikes,
+        [postId]: {
+          ...prevLikes[postId],
+          [commentId]: updatedLikeCount,
+        },
+      }));
+    } catch (error) {
+      console.error("Error liking comment:", error);
+    }
+  };
+
   const handleDeleteComment = async (postId, commentId) => {
     try {
       // Send a DELETE request to remove the comment
@@ -250,6 +326,33 @@ const Blog = ({ currentUserId }) => {
                   {comments[post.id] &&
                     comments[post.id].map((comment, commentIndex) => (
                       <li key={commentIndex}>
+                        <div className="comment-actions">
+                          
+                          <label class="container1"
+                          onClick={() =>
+                            handleLikeComment(post.id, comment.id)
+                          }
+                          >
+                             Likes{" "}
+                            <span>{commentLikes[post.id][comment.id]}</span>
+                            <input checked="checked" type="checkbox" />
+                            <div class="checkmark">
+                              <svg viewBox="0 0 256 256">
+                                <rect
+                                  fill="none"
+                                  height="256"
+                                  width="256"
+                                ></rect>
+                                <path
+                                  d="M224.6,51.9a59.5,59.5,0,0,0-43-19.9,60.5,60.5,0,0,0-44,17.6L128,59.1l-7.5-7.4C97.2,28.3,59.2,26.3,35.9,47.4a59.9,59.9,0,0,0-2.3,87l83.1,83.1a15.9,15.9,0,0,0,22.6,0l81-81C243.7,113.2,245.6,75.2,224.6,51.9Z"
+                                  stroke-width="20px"
+                                  stroke="#FFF"
+                                  fill="none"
+                                ></path>
+                              </svg>
+                            </div>
+                          </label>
+                        </div>
                         {comment.content}
                         {console.log(
                           "Checking condition: ",
