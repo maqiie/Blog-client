@@ -64,13 +64,17 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<AuthComponent />} />
-          {/* <Route path="/blog" element={<Blog />} /> */}
+
           <Route
             path="/blog"
             element={<Blog currentUserId={currentUser?.id} />}
           />
 
-          <Route path="/createpost" element={<CreatePost />} />
+          <Route
+            path="/createpost"
+            element={<CreatePost currentUser={currentUser} />}
+          />
+
           <Route path="/category/health" element={<Health />} />
           <Route path="/category/travel" element={<Travel />} />
           <Route path="/category/music" element={<Music />} />

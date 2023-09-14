@@ -1,4 +1,6 @@
-
+body{
+  background-color:  #ccc;
+}
 
 .create-post {
     max-width: 600px;
@@ -156,3 +158,50 @@
     right: 0;
     width: 0;
    }
+
+   /* <======shwoing a users blogs========> */
+
+/* CSS */
+.blog_card {
+  border: 1px solid #d4abab;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color:  #ccc;
+}
+
+.blog_card ul {
+  list-style-type: decimal;
+  padding: 0;
+}
+
+.title {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+  border: 1px solid #ccc; /* Add a border around each title */
+  padding: 10px; /* Add padding to give some space */
+  background-color: #f9f9f9; /* Add a background color */
+  border-radius: 5px; /* Add rounded corners */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+}
+
+.likes {
+  color: #df4217;
+  font-size: 0.8em;
+}
+/* <=======blog=====> */
+/* Add this CSS to your createpost.css file */
+.blog_card ul li {
+  position: relative;
+  list-style-type: none; /* Remove default list numbering */
+  margin-bottom: 20px;
+}
+
+.post-number-badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 50%;
+}
