@@ -1,171 +1,14 @@
-// import React, { useState, useEffect } from "react";
-// import "font-awesome/css/font-awesome.min.css";
-// import axios from "axios";
-// import "./Blogs.css";
-
-// const Blog = () => {
-//   const [posts, setPosts] = useState([]);
-//   const [expandedPostId, setExpandedPostId] = useState(null); // Track the expanded post
-//   const authToken = localStorage.getItem("authToken");
-//   const apiBaseUrl = "http://localhost:3001";
-
-//   useEffect(() => {
-//     // Fetch blog posts with their like and dislike counts
-//     axios
-//       .get(`${apiBaseUrl}/posts`, {
-//         headers: {
-//           Authorization: `Bearer ${authToken}`,
-//           Accept: "application/json",
-//         },
-//       })
-//       .then((response) => {
-//         setPosts(response.data);
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching posts:", error);
-//       });
-//   }, [authToken, apiBaseUrl]);
-
-//   const handleLikePost = async (postId) => {
-//     try {
-//       // Send a POST request to like the post
-//       await axios.post(`${apiBaseUrl}/posts/${postId}/like`, null, {
-//         headers: {
-//           Authorization: `Bearer ${authToken}`,
-//         },
-//       });
-
-//       console.log("Post liked successfully");
-
-//       // Fetch the updated like count
-//       const likeResponse = await axios.get(
-//         `${apiBaseUrl}/posts/${postId}/likes`
-//       ); // Use the new "likes" route
-
-//       const updatedLikeCount = likeResponse.data.likesCount;
-
-//       console.log("Updated Like Count:", updatedLikeCount);
-
-//       // Update the UI to reflect the new like count
-//       setPosts((prevPosts) =>
-//         prevPosts.map((post) =>
-//           post.id === postId
-//             ? {
-//                 ...post,
-//                 likes_count: updatedLikeCount,
-//               }
-//             : post
-//         )
-//       );
-//     } catch (error) {
-//       console.error("Error liking post:", error);
-//     }
-//   };
-
-//   const handleDislikePost = async (postId) => {
-//     try {
-//       // Send a POST request to dislike the post
-//       await axios.post(`${apiBaseUrl}/posts/${postId}/dislike`, null, {
-//         headers: {
-//           Authorization: `Bearer ${authToken}`,
-//         },
-//       });
-
-//       console.log("Post disliked successfully");
-
-//       // Fetch the updated dislike count
-//       const dislikeResponse = await axios.get(
-//         `${apiBaseUrl}/posts/${postId}/dislikes`
-//       ); // Use the new "dislikes" route
-
-//       const updatedDislikeCount = dislikeResponse.data.dislikesCount;
-
-//       console.log("Updated Dislike Count:", updatedDislikeCount);
-
-//       // Update the UI to reflect the new dislike count
-//       setPosts((prevPosts) =>
-//         prevPosts.map((post) =>
-//           post.id === postId
-//             ? {
-//                 ...post,
-//                 dislikes_count: updatedDislikeCount,
-//               }
-//             : post
-//         )
-//       );
-//     } catch (error) {
-//       console.error("Error disliking post:", error);
-//     }
-//   }; // Move this closing curly brace to here
-
-//   const handlePostClick = (postId) => {
-//     // Toggle the expanded state of the post
-//     if (postId === expandedPostId) {
-//       // Collapse the post if it's already expanded
-//       setExpandedPostId(null);
-//     } else {
-//       // Expand the clicked post
-//       setExpandedPostId(postId);
-//     }
-//   };
-
-//   return (
-//     <div className="blog">
-//       <h2>Latest Blog Posts</h2>
-//       <div className="post-list">
-//         {posts.map((post, index) => (
-//           <div
-//             key={index}
-//             className={`post ${post.id === expandedPostId ? "expanded" : ""}`}
-//           >
-//             <h3 className="post-title">{post.title}</h3>
-//             <p className="post-author">By {post.author}</p>
-//             <div className="post-content">
-//               {post.id === expandedPostId ? post.content : post.content.slice(0, 200) + '...'}
-//               {/* Display only a portion of content if not expanded */}
-//             </div>
-//             {post.image_url && (
-//               <img
-//                 src={`${apiBaseUrl}${post.image_url}`}
-//                 alt={post.title}
-//                 className="post-image"
-//                 onLoad={() => console.log("Image loaded successfully")}
-//                 onError={() => console.error("Image loading error")}
-//               />
-//             )}
-//             <div>
-//               <button onClick={() => handleLikePost(post.id)}>
-//                 <i className="fa fa-thumbs-up thumbs-up-icon"></i>{" "}
-//                 <span>{post.likes_count}</span>
-//               </button>
-//               <button onClick={() => handleDislikePost(post.id)}>
-//                 <i className="fa fa-thumbs-down thumbs-down-icon"></i>{" "}
-//                 <span>{post.dislikes_count}</span>
-//               </button>
-//             </div>
-//             {/* Add a "Read More" link to expand/collapse the post */}
-//             <div className="read-more" onClick={() => handlePostClick(post.id)}>
-//               {post.id === expandedPostId ? "Read Less" : "Read More"}
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Blog;
-
 import React, { useState, useEffect } from "react";
 import "font-awesome/css/font-awesome.min.css";
 import axios from "axios";
 import "./Blogs.css";
 
-const Blog = () => {
+const Blog = ({ currentUserId }) => {
   const [posts, setPosts] = useState([]);
   const [expandedPostId, setExpandedPostId] = useState(null);
   const authToken = localStorage.getItem("authToken");
   const apiBaseUrl = "http://localhost:3001";
+  // const [currentUserId, setCurrentUserId] = useState(null);
 
   // State to store comments for each post
   const [comments, setComments] = useState({});
@@ -275,6 +118,24 @@ const Blog = () => {
     }
   };
 
+  // const fetchComments = async (postId) => {
+  //   try {
+  //     const response = await axios.get(
+  //       `${apiBaseUrl}/posts/${postId}/comments`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${authToken}`,
+  //           Accept: "application/json",
+  //         },
+  //       }
+  //     );
+
+  //     // Set the comments for the specific post
+  //     setComments({ ...comments, [postId]: response.data });
+  //   } catch (error) {
+  //     console.error("Error fetching comments:", error);
+  //   }
+  // };
   const fetchComments = async (postId) => {
     try {
       const response = await axios.get(
@@ -287,8 +148,19 @@ const Blog = () => {
         }
       );
 
-      // Set the comments for the specific post
-      setComments({ ...comments, [postId]: response.data });
+      const commentsData = response.data; // Assuming the response contains an array of comments
+
+      // Map the comments to extract user IDs
+      const commentsWithUserIds = commentsData.map((comment) => ({
+        ...comment,
+        userId: comment.user_id, // Extract the user ID
+      }));
+
+      // Update the comments state while preserving existing comments
+      setComments((prevComments) => ({
+        ...prevComments,
+        [postId]: commentsWithUserIds,
+      }));
     } catch (error) {
       console.error("Error fetching comments:", error);
     }
@@ -343,7 +215,6 @@ const Blog = () => {
       console.error("Error deleting comment:", error);
     }
   };
-  
 
   return (
     <div className="blog">
@@ -386,11 +257,44 @@ const Blog = () => {
             {post.id === expandedPostId && (
               <div className="comments-section">
                 <h4>Comments:</h4>
+                {console.log("Expanded Post ID:", expandedPostId)}
+                {console.log("Current Post ID:", post.id)}
+                {/* // Inside your Blog component where you render the comments and
+                delete button */}
                 <ul>
                   {comments[post.id] &&
                     comments[post.id].map((comment, commentIndex) => (
-                      <li key={commentIndex}>{comment.content}</li>
-                      
+                      <li key={commentIndex}>
+                        {comment.content}
+                        {console.log(
+                          "Checking condition: ",
+                          comment.user_id,
+                          currentUserId
+                        )}
+                        {/* Check if comment.user_id is equal to currentUserId */}
+                        {comment.userId === currentUserId ||
+                          (!comment.content && (
+                            <div className="comment-actions">
+                              {console.log(
+                                "Delete button should be displayed here"
+                              )}
+                              <button
+                                className="normal-button"
+                                onClick={() =>
+                                  handleDeleteComment(post.id, comment.id)
+                                }
+                              >
+                                Delete
+                              </button>
+
+                              <div className="div">
+                                <small>
+                                  <i></i>
+                                </small>
+                              </div>
+                            </div>
+                          ))}
+                      </li>
                     ))}
                 </ul>
                 <div>
