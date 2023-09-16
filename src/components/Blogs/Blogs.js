@@ -120,50 +120,7 @@ const Blog = ({ currentUserId }) => {
     }
   };
 
-  // const fetchComments = async (postId) => {
-  //   try {
-  //     const response = await axios.get(
-  //       `${apiBaseUrl}/posts/${postId}/comments`,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${authToken}`,
-  //           Accept: "application/json",
-  //         },
-  //       }
-  //     );
-
-  //     const commentsData = response.data; // Assuming the response contains an array of comments
-
-  //     // Map the comments to extract user IDs
-  //     const commentsWithUserIds = commentsData.map((comment) => ({
-  //       ...comment,
-  //       userId: comment.user_id, // Extract the user ID
-  //     }));
-
-  //     // Initialize comment likes in the state
-  //     const initialCommentLikes = commentsWithUserIds.reduce(
-  //       (likes, comment) => ({
-  //         ...likes,
-  //         [comment.id]: comment.likes_count || 0,
-  //       }),
-  //       {}
-  //     );
-
-  //     // Update the comments state while preserving existing comments and initialize comment likes
-  //     setComments((prevComments) => ({
-  //       ...prevComments,
-  //       [postId]: commentsWithUserIds,
-  //     }));
-
-  //     // Initialize comment likes state
-  //     setCommentLikes((prevLikes) => ({
-  //       ...prevLikes,
-  //       [postId]: initialCommentLikes,
-  //     }));
-  //   } catch (error) {
-  //     console.error("Error fetching comments:", error);
-  //   }
-  // };
+  
   const fetchComments = async (postId) => {
     try {
       const response = await axios.get(
@@ -252,46 +209,7 @@ const Blog = ({ currentUserId }) => {
     }
   };
 
-  // const handleLikeComment = async (postId, commentId) => {
-  //   try {
-  //     // Send a POST request to like the comment
-  //     await axios.post(
-  //       `${apiBaseUrl}/posts/${postId}/comments/${commentId}/like`,
-
-  //       null,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${authToken}`,
-  //         },
-  //       }
-  //     );
-
-  //     const likeResponse = await axios.get(
-  //       `${apiBaseUrl}/posts/${postId}/comments/${commentId}/likes`,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${authToken}`,
-  //           Accept: "application/json", // Make sure to include this header
-  //         },
-  //       }
-  //     );
-
-  //     console.log("Like Response:", likeResponse.data);
-
-  //     const updatedLikeCount = likeResponse.data.likesCount;
-
-  //     // Update the UI to reflect the new like count for the comment
-  //     setCommentLikes((prevLikes) => ({
-  //       ...prevLikes,
-  //       [postId]: {
-  //         ...prevLikes[postId],
-  //         [commentId]: updatedLikeCount,
-  //       },
-  //     }));
-  //   } catch (error) {
-  //     console.error("Error liking comment:", error);
-  //   }
-  // };
+  
 
 
   const handleLikeComment = async (postId, commentId) => {
