@@ -1,38 +1,101 @@
-import React from 'react';
-import { FaUser } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import './Navbar.css';
+import React, { useState } from "react";
+import { FaUser, FaBars } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { CgLogOut } from "react-icons/cg";
 
-function Navbar() {
+import "./Navbar.css";
+
+function Navbar({ isLoggedIn }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  console.log("Is User Logged In?", isLoggedIn); // Add this console log
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    // Reset user-related state if needed
+    // setCurrentUser(null);
+
+    // Redirect to the home page
+    navigate("/");
+  };
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${menuOpen ? "menu-open" : ""}`}>
       <div className="nav-left">
-        <Link to="/" className="nav-logo">iBlog.</Link> {/* Make the logo a Link */}
-      </div>
-      <ul className="nav-list">
-        <li className="nav-item"><a href="/" className="nav-link">Home</a></li>
-        <li className="nav-item"><a href="#" className="nav-link">About</a></li>
-        <li>
-            <a href="/blog">Blogs</a>
-            <ul>
-              <li><a href="#">Technology</a></li>
-              <li><a href="#">Health</a></li>
-              <li><a href="#">Education</a></li>
-            </ul>
-          </li>
-        <li className="nav-item"><a href="#" className="nav-link">Portfolio</a></li>
-        <li className="nav-item"><a href="/createpost" className="nav-link">create</a></li>
-      </ul>
-      <div className="nav-right">
-        <Link to="/auth" className="nav-link">
-          <FaUser className="user-icon" />
+        <Link to="/" className="nav-logo">
+          iBlog.
         </Link>
       </div>
+      <div className="nav-toggle" onClick={toggleMenu}>
+        <FaBars className="menu-icon" />
+      </div>
+      <ul className={`nav-list ${menuOpen ? "menu-open" : ""}`}>
+        <li className="nav-item">
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/about" className="nav-link">
+            About
+          </Link>
+        </li>
+        <li className="nav-item">
+          <a href="/blog" className="nav-link">
+            Blogs
+          </a>
+          <ul>
+            <li>
+              <a href="#">Technology</a>
+            </li>
+            <li>
+              <a href="#">Health</a>
+            </li>
+            <li>
+              <a href="#">Education</a>
+            </li>
+          </ul>
+        </li>
+
+        {isLoggedIn ? (
+          <>
+            <li className="nav-item">
+              <Link to="/portfolio" className="nav-link">
+                Portfolio
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/createpost" className="nav-link">
+                Create
+              </Link>
+            </li>
+            <l className="nav-item1">
+              <button onClick={handleLogout} className="nav-link">
+                
+                <CgLogOut/>
+                logout
+              </button>
+            </l>
+            
+          </>
+        ) : (
+          <l className="nav-item1">
+            <Link to="/auth" className="nav-link1">
+              <FaUser className="user-icon1" />
+              sign
+               up
+            </Link>
+          </l>
+        )}
+      </ul>
     </nav>
   );
 }
 
 export default Navbar;
-
-
-

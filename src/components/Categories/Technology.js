@@ -6,11 +6,20 @@ const Technology = () => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
-    // Fetch blogs from the backend for the Technology category
-    fetch('technology_backend_endpoint')
+    // Replace 'your_category' with the actual category you want to fetch
+    const category = 'Technology';
+
+    // Fetch blogs from the backend for the specified category
+    fetch(`http://localhost:3001/posts/category/${category}`) // Update the endpoint path
+    
       .then(response => response.json())
-      .then(data => setBlogs(data))
-      .catch(error => console.error('Error fetching blogs:', error));
+      .then(data => {
+        console.log('Fetched data:', data); // Log the fetched data
+        setBlogs(data);
+      })
+      .catch(error => {
+        console.error('Error fetching blogs:', error); // Log any errors
+      });
   }, []);
 
   return (

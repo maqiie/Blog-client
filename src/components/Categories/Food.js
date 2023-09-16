@@ -5,13 +5,22 @@ import BlogCard from './BlogCard';
 const Food = () => {
   const [blogs, setBlogs] = useState([]);
 
+
   useEffect(() => {
-    // Fetch blogs from the backend for the Food category
-    fetch('food_backend_endpoint')
-      .then(response => response.json())
-      .then(data => setBlogs(data))
-      .catch(error => console.error('Error fetching blogs:', error));
+    // Replace 'food' with the desired category name
+    const categoryName = 'food'; // You can change this dynamically based on your needs
+  
+    // Construct the URL by interpolating the category name
+    const categoryUrl = `/categories/${categoryName}`;
+  
+    // Fetch blogs from the backend for the specified category
+    fetch(categoryUrl)
+      .then((response) => response.json())
+      .then((data) => setBlogs(data))
+      .catch((error) => console.error('Error fetching blogs:', error));
   }, []);
+  
+  
 
   return (
     <div className='category-wrapper'>

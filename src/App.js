@@ -59,7 +59,8 @@ function App() {
     <Router>
       <div className="App">
         <Sidebar />
-        <Navbar />
+        <Navbar isLoggedIn={isLoggedIn} />
+
 
         <Routes>
           <Route path="/" element={<Home />} />

@@ -145,7 +145,7 @@ nav a {
 }
 
 nav a:hover { 
-	background-color: #716868; 
+	/* background-color: #716868;  */
 }
 
 /* Hide Dropdowns by Default */
@@ -183,39 +183,128 @@ li > a:only-child:after { content: ''; }
 
 
 
-
+/* Your existing CSS styles here */
 
 /* Media queries for small screens */
 @media screen and (max-width: 768px) {
   .navbar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .nav-left {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
   }
 
   .nav-list {
     flex-direction: column;
+    align-items: center;
+    display: none; /* Hide the navigation links by default */
   }
 
   .nav-item {
-    margin-right: 0;
     margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .nav-link {
+    padding: 10px 0;
+  }
+
+  .user-icon {
+    margin-top: 10px;
+  }
+
+  /* Show the navigation links when the menu is open */
+  .navbar.menu-open .nav-list {
+    display: flex;
+  }
+
+  /* Style the menu icon */
+  .menu-icon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  /* Style the menu button */
+  .nav-toggle {
+    display: block;
+    text-align: center;
+    background-color: #333; /* Change to your preferred background color */
+    color: #fff; /* Change to your preferred text color */
+    padding: 10px;
+    cursor: pointer;
   }
 }
-
-/* Media queries for medium screens */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  .nav-list {
-    margin-right: 20px;
-  }
-}
-
 /* Media queries for large screens */
-@media screen and (min-width: 1025px) {
-  .nav-list {
-    margin-right: 40px;
+@media screen and (min-width: 769px) {
+  .navbar {
+    flex-direction: row; /* Reset the direction for large screens */
   }
+
+  .nav-list {
+    display: flex; /* Display the navigation links by default on large screens */
+  }
+
+  .menu-icon {
+    display: none; /* Hide the menu icon on large screens */
+  }
+
+  .nav-toggle {
+    display: none; /* Hide the menu toggle button on large screens */
+  }
+}
+
+
+
+
+/* <======navbar=======icon==== */
+
+
+/* Custom styles for nav-item1 */
+.nav-item1 {
+  margin: 0 15px;
+  transition: transform 0.3s;
+  /* Add any other styles you want for this specific item */
+}
+
+.nav-item1:hover {
+  transform: translateY(-2px);
+  /* Add hover effect if desired */
+}
+
+/* Custom styles for nav-link1 */
+.nav-link1 {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  transition: color 0.3s;
+  /* Add any other styles you want for this specific link */
+}
+
+.nav-link1:hover {
+  color: #ffc107;
+  /* Change link color on hover */
+}
+
+/* Custom styles for user-icon1 */
+.user-icon1 {
+  color: #fff;
+  font-size: 24px;
+  /* Customize the color and size of the user icon */
+}
+
+/* Custom styles for nav-logo */
+.nav-logo {
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 20px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-logo:hover {
+  color: #ffc107; /* Highlight color on hover */
 }
