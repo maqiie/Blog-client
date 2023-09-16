@@ -26,34 +26,31 @@
 import React, { useState, useEffect } from 'react';
 import './Art.css';
 import BlogCard from './BlogCard';
+import axios from 'axios';
 
-const Education = () => {
+const Education = ({ categoryId }) => {
   const [blogs, setBlogs] = useState([]);
-  
 
   useEffect(() => {
-    // Replace 'your_category' with the actual category you want to fetch
-    const category = 'Education';
-
-    // Fetch blogs from the backend for the specified category
-    fetch(`http://localhost:3001/posts/category/${category}`) // Update the endpoint path
-    
-      .then(response => response.json())
-      .then(data => {
+    // Fetch data from the backend using the dynamic categoryId
+    axios.get(`http://localhost:3001/categories/10/posts`) // Use categoryId in the URL
+      .then(response => {
+        const data = response.data;
         console.log('Fetched data:', data); // Log the fetched data
         setBlogs(data);
       })
       .catch(error => {
-        console.error('Error fetching blogs:', error); // Log any errors
+        console.error('Error fetching data:', error); // Log any errors
       });
-  }, []);
+  }, [categoryId]); // Add categoryId as a dependency
 
-  console.log('Rendered with blogs:', blogs); // Log the current state of blogs
+  console.log('Rendered with categoryId:', categoryId);
+  console.log('Rendered with blogs:', blogs);
 
   return (
     <div className='category-wrapper'>
       {blogs.map(blog => (
-        <BlogCard key={blog.id} category='Education' {...blog} />
+        <BlogCard key={blog.id} category={`Category ID: ${categoryId}`} {...blog} />
       ))}
     </div>
   );
