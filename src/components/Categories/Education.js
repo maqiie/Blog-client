@@ -1,73 +1,44 @@
 
-// import React, { useState, useEffect } from 'react';
-// import './Art.css';
-// import BlogCard from './BlogCard';
-// import axios from 'axios';
-
-// const Education = ({ categoryId }) => {
-//   const [blogs, setBlogs] = useState([]);
-
-//   useEffect(() => {
-//     // Fetch data from the backend using the dynamic categoryId
-//     axios.get(`http://localhost:3001/categories/10/posts`) // Use categoryId in the URL
-//       .then(response => {
-//         const data = response.data;
-//         console.log('Fetched data:', data); // Log the fetched data
-//         setBlogs(data);
-//       })
-//       .catch(error => {
-//         console.error('Error fetching data:', error); // Log any errors
-//       });
-//   }, [categoryId]); // Add categoryId as a dependency
-
-//   console.log('Rendered with categoryId:', categoryId);
-//   console.log('Rendered with blogs:', blogs);
-
-//   return (
-//     <div className='category-wrapper'>
-//       {blogs.map(blog => (
-//         <BlogCard key={blog.id} category={`Category ID: ${categoryId}`} {...blog} />
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default Education;
 import React, { useState, useEffect } from 'react';
-import './Art.css';
+import './Art.css'; // Update the CSS file name
 import axios from 'axios';
 
 const Education = ({ categoryId }) => {
   const [blogs, setBlogs] = useState([]);
   const [expandedCard, setExpandedCard] = useState(null); // Track the expanded card's index
 
-  useEffect(() => {
-    // Fetch data from the backend using the dynamic categoryId
-    axios.get(`http://localhost:3001/categories/10/posts`)
-      .then(response => {
-        const data = response.data;
-        console.log('Fetched data:', data); // Log the fetched data
-        setBlogs(data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error); // Log any errors
-      });
-  }, [categoryId]);
-
-  console.log('Rendered with categoryId:', categoryId);
-  console.log('Rendered with blogs:', blogs);
-
-  // Function to toggle the visibility of the entire post content
+  // Define the togglePostVisibility function
   const togglePostVisibility = (index) => {
     if (expandedCard === index) {
+      // If the clicked card is already expanded, close it
       setExpandedCard(null);
     } else {
+      // Expand the clicked card and close others
       setExpandedCard(index);
     }
   };
 
+  useEffect(() => {
+    // Fetch data from the backend using the dynamic categoryId
+    axios
+      .get(`http://localhost:3001/categories/10/posts`)
+      .then((response) => {
+        const data = response.data.map((blog) => ({
+          id: blog.id,
+          title: blog.title,
+          content: blog.content,
+          image: blog.image_url, // Assuming image_url contains the image URL
+        }));
+        console.log('Fetched data:', data); // Log the fetched data
+        setBlogs(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error); // Log any errors
+      });
+  }, [categoryId]);
+
   return (
-    <div className='category-wrapper'>
+    <div className="education-wrapper"> {/* Update the class name */}
       {blogs.map((blog, index) => (
         <div
           className={`blog-card ${expandedCard === index ? 'expanded' : ''}`}
@@ -77,8 +48,8 @@ const Education = ({ categoryId }) => {
           <h2>{blog.title}</h2>
           <div className={`post-content ${expandedCard === index ? 'visible' : ''}`}>
             <p>{expandedCard === index ? blog.content : blog.content.slice(0, 200) + '...'}</p>
-            {expandedCard === index && blog.image && (
-              <img src={blog.image} alt={`Image for ${blog.title}`} />
+            {blog.image && (
+              <img src={blog.image} alt={`Image for ${blog.title}`} className="blog-image" />
             )}
           </div>
         </div>

@@ -1,53 +1,65 @@
-/* Art.css */
+/* Education.css */
 
-/* Style for the blog card container */
-.category-wrapper {
+/* Style for the wrapper div */
+.education-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center align cards horizontally */
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 /* Style for each individual blog card */
 .blog-card {
-  width: 300px;
   border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-  background-color: #fff; /* White background color */
+  background-color: #fff;
 }
 
-/* Style for an expanded blog card */
-.blog-card.expanded {
-  height: auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Slightly stronger shadow when expanded */
-}
-
-/* Style for the blog card title */
 .blog-card h2 {
   font-size: 1.5rem;
-  margin: 0;
-  color: #333; /* Dark text color */
+  margin-bottom: 10px;
 }
 
-/* Style for the post content that is initially hidden */
+/* Style for the expanded card */
+.blog-card.expanded {
+  transform: scale(1.05);
+}
+
+/* Style for the post content */
 .post-content {
-  display: none;
+  max-height: 200px;
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
-  padding: 10px; /* Add padding for better spacing */
 }
 
-/* Style for the visible post content when expanded */
+/* Style for the visible post content */
 .post-content.visible {
-  display: block;
-  max-height: none; /* Remove height restriction */
+  max-height: none;
 }
 
-/* Style for the image within the expanded card */
-.post-content.visible img {
-  max-width: 100%;
+/* Style for the blog image */
+.blog-image {
+  width: 100%;
   height: auto;
+  border-radius: 8px;
+  margin-top: 10px;
 }
+
+/* Style for the "Read More" and "Read Less" button */
+.read-more {
+  text-align: center;
+  color: #007bff;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
