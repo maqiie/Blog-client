@@ -11,11 +11,16 @@
   background-position: center;
 }
 
+/* .auth-form-container {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px); /* Apply a blur effect to the background */
+  /* transition: transform 0.3s ease-in-out; */
+/* } */ 
 
 
-.auth-form-container.signup {
-  transform: translateX(-100%);
-}
 
 .auth-form-container.login {
   transform: translateX(0);
