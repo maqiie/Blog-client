@@ -63,3 +63,18 @@
   text-decoration: underline;
 }
 
+/* Media Query for Large Screens (Adjust as needed) */
+@media screen and (min-width: 768px) {
+  /* Increase the width of blog cards to fill the screen */
+  .blog-card {
+    width: calc(33.33% - 40px); /* You can adjust the width as needed */
+  }
+}
+
+/* Media Query for Small Screens (e.g., mobile devices) */
+@media screen and (max-width: 767px) {
+  /* Adjust styles for smaller screens here */
+  .blog-card {
+    width: 100%; /* Make cards full-width on small screens */
+  }
+}
