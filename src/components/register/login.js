@@ -17,7 +17,7 @@ const Login = ({ onToggleForm }) => {
     try {
       const response = await axios({
         method: "post",
-        url: "https://vercel.com/maqiie/blog-api/XUmjHqFJr5hB2yvxoM75r2xi8f2j/auth/sign_in",
+        url: "https://blog-api-maqiie.vercel.app/auth/sign_in",
         headers: {
           "Content-Type": "application/json",
         },

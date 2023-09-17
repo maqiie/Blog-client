@@ -27,7 +27,7 @@ const Signup = ({ onToggleForm }) => {
     }
   
     try {
-      const response = await axios.post("https://vercel.com/maqiie/blog-api/XUmjHqFJr5hB2yvxoM75r2xi8f2j/auth", {
+      const response = await axios.post("https://blog-api-maqiie.vercel.app/auth", {
         user: {
           name,
           email,
