@@ -459,9 +459,6 @@
   animation: like_effect 400ms ease;
 }
 
-.container1:hover {
-  /* transform: scale(1.1); */
-}
 
 @keyframes like_effect {
   0% {

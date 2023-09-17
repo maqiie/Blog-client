@@ -144,9 +144,7 @@ nav a {
 	text-decoration:none;
 }
 
-nav a:hover { 
-	/* background-color: #716868;  */
-}
+
 
 /* Hide Dropdowns by Default */
 nav ul ul {
