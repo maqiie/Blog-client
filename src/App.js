@@ -18,6 +18,7 @@ import Other from "./components/Categories/Other";
 import Science from "./components/Categories/Science";
 import Sports from "./components/Categories/Sports";
 import Technology from "./components/Categories/Technology";
+import Profile from "./components/Profile/Profile";
 import axios from "axios";
 
 function App() {
@@ -61,7 +62,6 @@ function App() {
         <Sidebar />
         <Navbar isLoggedIn={isLoggedIn} />
 
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<AuthComponent />} />
@@ -75,7 +75,7 @@ function App() {
             path="/createpost"
             element={<CreatePost currentUser={currentUser} />}
           />
-
+          <Route path="/profile" element={<Profile />} />
           <Route path="/category/health" element={<Health />} />
           <Route path="/category/travel" element={<Travel />} />
           <Route path="/category/music" element={<Music />} />

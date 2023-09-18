@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaUser, FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { CgLogOut } from "react-icons/cg";
+import { CgLogOut, CgProfile } from "react-icons/cg";
 
 import "./Navbar.css";
 
@@ -65,16 +65,18 @@ function Navbar({ isLoggedIn }) {
 
         {isLoggedIn ? (
           <>
-            <li className="nav-item">
-              <Link to="/portfolio" className="nav-link">
-                Portfolio
-              </Link>
-            </li>
+            
             <li className="nav-item">
               <Link to="/createpost" className="nav-link">
                 Create
               </Link>
             </li>
+            <l className="nav-item">
+              <Link to="/profile" className="nav-link">
+                <CgProfile/>
+                Profile
+              </Link>
+            </l>
             <l className="nav-item1">
               <button onClick={handleLogout} className="nav-link">
                 
