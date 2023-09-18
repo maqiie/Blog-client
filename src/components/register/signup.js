@@ -27,7 +27,7 @@ const Signup = ({ onToggleForm }) => {
     }
   
     try {
-      const response = await axios.post("https://blog-api-three-sigma.vercel.app/auth", {
+      const response = await axios.post("https://pizza-api-3.onrender.com/auth", {
         user: {
           name,
           email,
