@@ -19,7 +19,17 @@ const Profile = () => {
   }, []);
 
   if (!user) {
-    return <div>Loading...</div>; // You can replace this with a loading spinner or message
+    return <div><div class="loader">
+    <span class="l">L</span>
+    <span class="o">o</span>
+    <span class="a">a</span>
+    <span class="d">d</span>
+    <span class="i">i</span>
+    <span class="n">n</span>
+    <span class="g">g</span>
+    <span class="d1">.</span>
+    <span class="d2">.</span>
+  </div></div>; // You can replace this with a loading spinner or message
   }
 
   return (
