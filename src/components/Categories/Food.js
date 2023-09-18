@@ -22,7 +22,7 @@ const Food = ({ categoryId }) => {
   useEffect(() => {
     // Fetch data from the backend using the dynamic categoryId
     axios
-      .get(`http://localhost:3001/categories/1/posts`)
+      .get(`https://pizza-api-3.onrender.com/categories/1/posts`)
       .then((response) => {
         const data = response.data.map((blog) => ({
           id: blog.id,

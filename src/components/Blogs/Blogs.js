@@ -7,7 +7,7 @@ const Blog = ({ currentUserId }) => {
   const [posts, setPosts] = useState([]);
   const [expandedPostId, setExpandedPostId] = useState(null);
   const authToken = localStorage.getItem("authToken");
-  const apiBaseUrl = "http://localhost:3001";
+  const apiBaseUrl = "https://pizza-api-3.onrender.com";
   const [commentLikes, setCommentLikes] = useState({});
 
   // State to store comments for each post
