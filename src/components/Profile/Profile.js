@@ -19,7 +19,7 @@ const Profile = () => {
   }, []);
 
   if (!user) {
-    return <div><div class="loader">
+    return <div><div class="loader2">
     <span class="l">L</span>
     <span class="o">o</span>
     <span class="a">a</span>
