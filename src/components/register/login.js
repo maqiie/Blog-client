@@ -191,7 +191,7 @@ const Login = ({ onToggleForm }) => {
       <h2 className="text-2xl font-semibold mb-4 text-blue-600">Login</h2>
       {loading ? ( // Conditionally render the loader while loading
         <div className="spinnerContainer">
-          <div className="spinner"></div>
+          <div className="spinner1"></div>
           <div className="loader1">
             <p>loading</p>
             <div className="words">

@@ -4,7 +4,7 @@
     align-items: center;
   }
   
-  .spinner {
+  .spinner1 {
     width: 56px;
     height: 56px;
     display: grid;
@@ -14,8 +14,8 @@
     animation: tri-spinner 1s infinite linear;
   }
   
-  .spinner::before,
-  .spinner::after {
+  .spinner1::before,
+  .spinner1::after {
     content: "";
     grid-area: 1/1;
     margin: 2px;
@@ -24,7 +24,7 @@
     animation: tri-spinner 2s infinite;
   }
   
-  .spinner::after {
+  .spinner1::after {
     margin: 8px;
     animation-duration: 3s;
   }
