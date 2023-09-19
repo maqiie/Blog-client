@@ -18,47 +18,6 @@ const Signup = ({ onToggleForm }) => {
 
  
 
-  // const handleSignup = async (e) => {
-  //   e.preventDefault();
-  
-  //   if (password !== confirmPassword) {
-  //     console.log("Passwords do not match.");
-  //     return;
-  //   }
-  
-  //   try {
-  //     const response = await axios.post("https://blog-api-y76j.vercel.app/auth", {
-  //       user: {
-  //         name,
-  //         email,
-  //         password,
-  //         password_confirmation: confirmPassword,
-  //       },
-  //     });
-  
-  //     if (response.status === 200) {
-  //       const authTokenHeader = response.headers["authorization"];
-  //       if (authTokenHeader) {
-  //         const authToken = authTokenHeader.split("Bearer ")[1];
-  //         if (authToken) {
-  //           localStorage.setItem("authToken", authToken);
-  //           console.log("Stored authToken:", authToken);
-  //           navigate("/"); // Redirect to the home page ("/")
-  //         } else {
-  //           setError("Invalid Authorization header format.");
-  //         }
-  //       } else {
-  //         setError("Authorization header not found in response.");
-  //       }
-  //     } else {
-  //       setError("Signup failed. Please check your details.");
-  //       console.error("Signup failed. Response:", response);
-  //     }
-  //   } catch (error) {
-  //     setError("Error signing up. Please try again later.");
-  //     console.error("Error signing up:", error);
-  //   }
-  // };
   const handleSignup = async (e) => {
     e.preventDefault();
   
@@ -84,12 +43,7 @@ const Signup = ({ onToggleForm }) => {
           if (authToken) {
             localStorage.setItem("authToken", authToken);
             console.log("Stored authToken:", authToken);
-            
-            // Update the user state here (you can use React state or Redux)
-            setUser(response.data.user);
-  
-            // Use navigate to redirect to a different route
-            navigate("/dashboard"); // Redirect to the dashboard or any desired route
+            navigate("/"); // Redirect to the home page ("/")
           } else {
             setError("Invalid Authorization header format.");
           }
@@ -105,6 +59,7 @@ const Signup = ({ onToggleForm }) => {
       console.error("Error signing up:", error);
     }
   };
+ 
   
   
   return (
