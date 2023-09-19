@@ -98,7 +98,7 @@ function Home() {
   
   <div className="wrapper">
       <h1>"Empowering Perspectives, Inspiring Lives."</h1>
-      <input type="text" className="search-input" placeholder="Search" />
+      {/* <input type="text" className="search-input" placeholder="Search" /> */}
 
       <div className="cols">
         {cardsData.map((card, index) => (

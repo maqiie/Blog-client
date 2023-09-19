@@ -50,17 +50,7 @@ function Navbar({ isLoggedIn }) {
           <a href="/blog" className="nav-link">
             Blogs
           </a>
-          <ul>
-            <li>
-              <a href="#">Technology</a>
-            </li>
-            <li>
-              <a href="#">Health</a>
-            </li>
-            <li>
-              <a href="#">Education</a>
-            </li>
-          </ul>
+          
         </li>
 
         {isLoggedIn ? (
