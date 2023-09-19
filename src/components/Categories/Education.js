@@ -21,7 +21,7 @@ const Education = ({ categoryId }) => {
   useEffect(() => {
     // Fetch data from the backend using the dynamic categoryId
     axios
-      .get(`https://pizza-api-3.onrender.com/categories/10/posts`)
+      .get(`https://blog-api-y76j.vercel.app/categories/10/posts`)
       .then((response) => {
         const data = response.data.map((blog) => ({
           id: blog.id,

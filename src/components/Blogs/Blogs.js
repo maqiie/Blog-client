@@ -457,7 +457,7 @@ const Blog = ({ currentUserId }) => {
   const [posts, setPosts] = useState([]);
   const [expandedPostId, setExpandedPostId] = useState(null);
   const authToken = localStorage.getItem("authToken");
-  const apiBaseUrl = "https://pizza-api-3.onrender.com";
+  const apiBaseUrl = "https://blog-api-y76j.vercel.app/";
   const [commentLikes, setCommentLikes] = useState({});
   const [comments, setComments] = useState({});
   const [newComment, setNewComment] = useState("");

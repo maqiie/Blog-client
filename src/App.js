@@ -41,7 +41,7 @@ function App() {
       try {
         // Make a GET request to validate the user's token and fetch user data
         const response = await axios.get(
-          "https://pizza-api-3.onrender.com/auth/validate_token"
+          "https://blog-api-y76j.vercel.app/auth/validate_token"
         ); // Use your backend URL
         const userData = response.data.data; // Assuming your user data is nested under "data"
         setCurrentUser(userData);
