@@ -183,11 +183,14 @@ li > a:only-child:after { content: ''; }
 
 /* Your existing CSS styles here */
 
-/* Media queries for small screens */
+/* Media query for screens up to 768px width */
 @media screen and (max-width: 768px) {
   .navbar {
     flex-direction: column;
     align-items: center;
+    padding: 10px;
+    background-color: #333; /* Add background color for the navbar */
+    color: #fff; /* Text color for the navbar */
   }
 
   .nav-left {
@@ -199,6 +202,7 @@ li > a:only-child:after { content: ''; }
     flex-direction: column;
     align-items: center;
     display: none; /* Hide the navigation links by default */
+    width: 100%;
   }
 
   .nav-item {
@@ -208,6 +212,9 @@ li > a:only-child:after { content: ''; }
 
   .nav-link {
     padding: 10px 0;
+    color: #fff; /* Link text color */
+    text-decoration: none;
+    font-size: 18px; /* Adjust link font size */
   }
 
   .user-icon {
@@ -217,6 +224,7 @@ li > a:only-child:after { content: ''; }
   /* Show the navigation links when the menu is open */
   .navbar.menu-open .nav-list {
     display: flex;
+    flex-direction: column;
   }
 
   /* Style the menu icon */
@@ -229,12 +237,14 @@ li > a:only-child:after { content: ''; }
   .nav-toggle {
     display: block;
     text-align: center;
-    background-color: #333; /* Change to your preferred background color */
-    color: #fff; /* Change to your preferred text color */
+    background-color: #333;
+    color: #fff;
     padding: 10px;
     cursor: pointer;
+    border: none;
   }
 }
+
 /* Media queries for large screens */
 @media screen and (min-width: 769px) {
   .navbar {
