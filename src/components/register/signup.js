@@ -27,7 +27,7 @@ const Signup = ({ onToggleForm }) => {
     }
   
     try {
-      const response = await axios.post("https://blog-api-y76j.vercel.app/auth", {
+      const response = await axios.post("https://blog-api0.onrender.com/auth", {
         user: {
           name,
           email,

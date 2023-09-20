@@ -22,7 +22,7 @@ const Travel = ({ categoryId }) => {
   useEffect(() => {
     // Fetch data from the backend using the dynamic categoryId
     axios
-      .get(`https://blog-api-y76j.vercel.app/categories/2/posts`)
+      .get(`https://blog-api0.onrender.com/categories/2/posts`)
       .then((response) => {
         const data = response.data.map((blog) => ({
           id: blog.id,

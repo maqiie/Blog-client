@@ -32,7 +32,7 @@ const CreatePost = ({ currentUser }) => {
   useEffect(() => {
     // Fetch categories from the backend and set them to the state
     axios
-      .get("https://blog-api-y76j.vercel.app/categories")
+      .get("https://blog-api0.onrender.com/categories")
       .then((response) => {
         setCategories(response.data);
       })
@@ -46,7 +46,7 @@ const CreatePost = ({ currentUser }) => {
       const userId = currentUser.id; // Check if currentUser is defined
 
       axios
-        .get(`https://blog-api-y76j.vercel.app/users/${userId}/posts`, {
+        .get(`https://blog-api0.onrender.com/users/${userId}/posts`, {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },
@@ -83,7 +83,7 @@ const CreatePost = ({ currentUser }) => {
       };
 
       const response = await axios.post(
-        "https://blog-api-y76j.vercel.app//posts",
+        "https://blog-api0.onrender.com/posts",
         formData,
         { headers }
       );
@@ -111,7 +111,7 @@ const CreatePost = ({ currentUser }) => {
 
     // Construct the DELETE request URL with both userId and postId
     axios
-      .delete(`https://blog-api-y76j.vercel.app/users/${userId}/posts/${postId}`)
+      .delete(`https://blog-api0.onrender.com/users/${userId}/posts/${postId}`)
       .then((response) => {
         // Handle success
         console.log("Post deleted successfully");
