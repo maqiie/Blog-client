@@ -10,7 +10,7 @@
 }
 
 /* Style for each individual blog card */
-.blog-card {
+.blog-card1 {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 20px;
@@ -21,30 +21,30 @@
   background-color: #fff;
 }
 
-.blog-card h2 {
+.blog-card1 h2 {
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
 /* Style for the expanded card */
-.blog-card.expanded {
+.blog-card1.expanded {
   transform: scale(1.05);
 }
 
 /* Style for the post content */
-.post-content {
+.post1-content {
   max-height: 200px;
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
 }
 
 /* Style for the visible post content */
-.post-content.visible {
+.post1-content.visible {
   max-height: none;
 }
 
 /* Style for the blog image */
-.blog-image {
+.blog1-image {
   width: 100%;
   height: auto;
   border-radius: 8px;
@@ -52,14 +52,14 @@
 }
 
 /* Style for the "Read More" and "Read Less" button */
-.read-more {
+.read-more1 {
   text-align: center;
   color: #007bff;
   cursor: pointer;
   margin-top: 10px;
 }
 
-.read-more:hover {
+.read-more1:hover {
   text-decoration: underline;
 }
 
