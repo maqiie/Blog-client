@@ -155,26 +155,26 @@ function Navbar() {
                 Create
               </Link>
             </li>
-            <li className="nav-item">
+            <l className="nav-item">
               <Link to="/profile" className="nav-link">
                 <CgProfile />
                 Profile
               </Link>
-            </li>
-            <li className="nav-item">
+            </l>
+            <l className="nav-item">
               <button onClick={handleLogout} className="nav-link">
                 <CgLogOut />
                 Logout
               </button>
-            </li>
+            </l>
           </>
         ) : (
-          <li className="nav-item">
+          <l className="nav-item">
             <Link to="/auth" className="nav-link">
               <FaUser className="user-icon" />
               Sign up
             </Link>
-          </li>
+          </l>
         )}
       </ul>
     </nav>
