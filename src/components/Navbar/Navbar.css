@@ -132,7 +132,7 @@ nav ul {
 	
 nav ul li {
 	display:inline-block;
-	background-color: #0f0f0e;
+	/* background-color: #0f0f0e; */
 	}
 
 nav a {
@@ -183,65 +183,94 @@ li > a:only-child:after { content: ''; }
 
 /* Your existing CSS styles here */
 
-/* Media query for screens up to 768px width */
 @media screen and (max-width: 768px) {
+  /* Navbar Container */
   .navbar {
-    flex-direction: column;
-    align-items: center;
+    background-color: #333;
+    color: #fff;
     padding: 10px;
-    background-color: #333; /* Add background color for the navbar */
-    color: #fff; /* Text color for the navbar */
-  }
-
-  .nav-left {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
-  .nav-list {
-    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    display: none; /* Hide the navigation links by default */
+  }
+
+  /* Logo and Menu Icon */
+  .nav-left {
+    text-align: center;
     width: 100%;
   }
 
-  .nav-item {
-    margin-bottom: 10px;
-    text-align: center;
-  }
-
-  .nav-link {
-    padding: 10px 0;
-    color: #fff; /* Link text color */
+  .nav-logo {
+    font-size: 28px;
+    font-weight: bold;
     text-decoration: none;
-    font-size: 18px; /* Adjust link font size */
+    transition: color 0.3s;
   }
 
-  .user-icon {
-    margin-top: 10px;
+  .nav-logo:hover {
+    color: #ffc107; /* Highlight color on hover */
   }
 
-  /* Show the navigation links when the menu is open */
-  .navbar.menu-open .nav-list {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Style the menu icon */
   .menu-icon {
     font-size: 24px;
     cursor: pointer;
   }
 
-  /* Style the menu button */
-  .nav-toggle {
-    display: block;
+  /* Menu List */
+  .nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    background-color: #706969;
+    left: 0;
+    z-index: 1;
+    transition: transform 0.3s;
+    transform: translateY(-100%);
+  }
+
+  /* Menu Items */
+  .nav-item {
+    margin: 10px 0;
     text-align: center;
-    background-color: #333;
+  }
+
+  .nav-link {
+    text-decoration: none;
     color: #fff;
-    padding: 10px;
-    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.3s;
+  }
+
+  .nav-link:hover {
+    color: #ffc107;
+  }
+
+  /* Toggle Button */
+  .nav-toggle {
+    background-color: transparent;
     border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  /* Show the navigation links when the menu is open */
+  .navbar.menu-open .nav-list {
+    transform: translateY(0);
+  }
+
+  /* Additional Styling */
+  .menu-open .menu-icon {
+    color: #ffc107; /* Highlight menu icon when menu is open */
+  }
+
+  .nav-toggle:hover {
+    background-color: #444; /* Darken toggle button on hover */
   }
 }
 
