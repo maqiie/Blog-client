@@ -227,9 +227,9 @@ li > a:only-child:after { content: ''; }
     width: 100%;
     position: absolute;
     top: 60px;
-    background-color: #706969;
+    background-color: #080808;
     left: 0;
-    z-index: 1;
+    z-index: 2;
     transition: transform 0.3s;
     transform: translateY(-100%);
   }

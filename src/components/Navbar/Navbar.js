@@ -99,26 +99,30 @@ import "./Navbar.css";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Initialize isLoggedIn state
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    // Check local storage for authentication token
     const authToken = localStorage.getItem("authToken");
     if (authToken) {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
     }
-  }, [location]); // Trigger when the location changes
+  }, [location]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("authToken");
-    setIsLoggedIn(false); // Set isLoggedIn to false on logout
+    setIsLoggedIn(false);
+    closeMenu(); // Close the menu when logging out
   };
 
   return (
@@ -133,17 +137,17 @@ function Navbar() {
       </div>
       <ul className={`nav-list ${menuOpen ? "menu-open" : ""}`}>
         <li className="nav-item">
-          <Link to="/" className="nav-link">
+          <Link to="/" className="nav-link" onClick={closeMenu}>
             Home
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/about" className="nav-link">
+          <Link to="/about" className="nav-link" onClick={closeMenu}>
             About
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/blog" className="nav-link">
+          <Link to="/blog" className="nav-link" onClick={closeMenu}>
             Blogs
           </Link>
         </li>
@@ -151,30 +155,30 @@ function Navbar() {
         {isLoggedIn ? (
           <>
             <li className="nav-item">
-              <Link to="/createpost" className="nav-link">
+              <Link to="/createpost" className="nav-link" onClick={closeMenu}>
                 Create
               </Link>
             </li>
-            <l className="nav-item">
-              <Link to="/profile" className="nav-link">
+            <li className="nav-item">
+              <Link to="/profile" className="nav-link" onClick={closeMenu}>
                 <CgProfile />
                 Profile
               </Link>
-            </l>
-            <l className="nav-item">
+            </li>
+            <li className="nav-item">
               <button onClick={handleLogout} className="nav-link">
                 <CgLogOut />
                 Logout
               </button>
-            </l>
+            </li>
           </>
         ) : (
-          <l className="nav-item">
-            <Link to="/auth" className="nav-link">
+          <li className="nav-item">
+            <Link to="/auth" className="nav-link" onClick={closeMenu}>
               <FaUser className="user-icon" />
               Sign up
             </Link>
-          </l>
+          </li>
         )}
       </ul>
     </nav>
