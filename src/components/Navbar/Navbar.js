@@ -151,12 +151,7 @@ function Navbar() {
             Blogs
           </Link>
         </li>
-        <li className="nav-item">
-              <Link to="/profile" className="nav-link" onClick={closeMenu}>
-                <CgProfile />
-                Profile
-              </Link>
-            </li>
+        
 
         {isLoggedIn ? (
           <>
@@ -165,12 +160,12 @@ function Navbar() {
                 Create
               </Link>
             </li>
-            {/* <li className="nav-item">
+            <li className="nav-item">
               <Link to="/profile" className="nav-link" onClick={closeMenu}>
                 <CgProfile />
                 Profile
               </Link>
-            </li> */}
+            </li>
             <li className="nav-item">
               <button onClick={handleLogout} className="nav-link">
                 <CgLogOut />
