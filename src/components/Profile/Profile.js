@@ -56,7 +56,7 @@ const Profile = () => {
 
   useEffect(() => {
     // Fetch user profile data from the backend when the component mounts
-    axios.get('https://blog-api0.onrender.com/api/v1/profiles/1') // Replace '1' with the actual user's ID or a dynamic value
+    axios.get(`https://blog-api0.onrender.com/profiles/${userId}`)
       .then((response) => {
         setProfile(response.data);
       })
@@ -71,7 +71,7 @@ const Profile = () => {
 
   const handleSaveClick = () => {
     // Make a PUT request to update the user's profile data
-    axios.put(`https://blog-api0.onrender.com/api/v1/profiles/${profile.id}`, profile)
+    axios.put(`https://blog-api0.onrender.com/profiles/${profile.id}`, profile)
       .then(() => {
         setEditing(false);
       })
@@ -80,62 +80,87 @@ const Profile = () => {
       });
   };
 
-  const handleFetchProfile = () => {
-    // Fetch user profile
-    axios.get('https://blog-api0.onrender.com/profile')
-      .then((response) => {
-        const userProfile = response.data;
-        // Handle the retrieved user profile data
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  const handleUpdateProfile = () => {
-    // Update user profile
-    const updatedProfileData = {
-      first_name: 'New First Name',
-      last_name: 'New Last Name',
-      bio: 'New Bio',
-    };
-
-    axios.patch('https://blog-api0.onrender.com/profile', { profile: updatedProfileData })
-      .then((response) => {
-        const updatedProfile = response.data.profile;
-        // Handle the updated user profile data
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
   return (
-    <div>
-      <h1>User Profile</h1>
-      <button onClick={handleFetchProfile}>Fetch Profile</button>
-      <button onClick={handleUpdateProfile}>Update Profile</button>
-      {editing ? (
-        <div>
-          <label>First Name:</label>
-          <input
-            type="text"
-            value={profile.first_name}
-            onChange={(e) => setProfile({ ...profile, first_name: e.target.value })}
-          />
-          {/* Add more fields for editing */}
-          <button onClick={handleSaveClick}>Save</button>
-        </div>
-      ) : (
-        <div>
-          <p>First Name: {profile.first_name}</p>
-          {/* Display other profile information here */}
-          <button onClick={handleEditClick}>Edit</button>
-        </div>
-      )}
+    <div className="container mx-auto mt-8">
+      <div className="max-w-xl mx-auto">
+        {editing ? (
+          <div className="mt-4 p-4 bg-white rounded shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4">Edit Profile</h2>
+            <div className="mb-4">
+              <label className="block text-gray-600">First Name:</label>
+              <input
+                type="text"
+                value={profile.first_name}
+                onChange={(e) => setProfile({ ...profile, first_name: e.target.value })}
+                className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-600">Last Name:</label>
+              <input
+                type="text"
+                value={profile.last_name}
+                onChange={(e) => setProfile({ ...profile, last_name: e.target.value })}
+                className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-600">Bio:</label>
+              <textarea
+                value={profile.bio}
+                onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
+                rows="4"
+                className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-600">Nickname:</label>
+              <input
+                type="text"
+                value={profile.nickname}
+                onChange={(e) => setProfile({ ...profile, nickname: e.target.value })}
+                className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+              />
+            </div>
+            {/* Add more fields for editing */}
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mt-2 transition duration-300 hover:bg-blue-600"
+              onClick={handleSaveClick}
+            >
+              Save
+            </button>
+          </div>
+        ) : (
+          <div className="mt-4 p-4 bg-white rounded shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4">User Profile</h2>
+            <div className="mb-4">
+              <strong className="text-gray-600">First Name:</strong> {profile.first_name}
+            </div>
+            <div className="mb-4">
+              <strong className="text-gray-600">Last Name:</strong> {profile.last_name}
+            </div>
+            <div className="mb-4">
+              <strong className="text-gray-600">Bio:</strong> {profile.bio}
+            </div>
+            <div className="mb-4">
+              <strong className="text-gray-600">Nickname:</strong> {profile.nickname}
+            </div>
+            {/* You can add more profile fields here */}
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded mt-2 transition duration-300 hover:bg-blue-600"
+              onClick={handleEditClick}
+            >
+              Edit
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
 export default Profile;
+
+
+
 
