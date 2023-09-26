@@ -53,10 +53,11 @@ import axios from 'axios';
 const Profile = () => {
   const [profile, setProfile] = useState({});
   const [editing, setEditing] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     // Fetch user profile data from the backend when the component mounts
-    axios.get(`https://blog-api0.onrender.com/profiles/${userId}`)
+    axios.get(`https://blog-api0.onrender.com/profiles/${user.Id}`)
       .then((response) => {
         setProfile(response.data);
       })
