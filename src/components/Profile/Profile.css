@@ -1,3 +1,179 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:bf0be749b1a8751d8f94a0519e4b05d04b10774b714e4784deecb1c71696317a
-size 3355
+/* Profile.css */
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover; /* Ensure the avatar image maintains its aspect ratio */
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333; /* Change the text color to a darker shade */
+  }
+  
+  p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #555; /* Adjust the text color */
+  }
+  
+  .user-details {
+    list-style-type: none;
+    padding: 0;
+    font-size: 0.9rem;
+  }
+  
+  .user-details li {
+    margin: 5px 0;
+    color: #777; /* Adjust the text color */
+  }
+  
+  .user-details a {
+    text-decoration: none;
+    color: #007BFF;
+  }
+  
+  /* Loading spinner styles */
+  .loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid #007BFF; /* Blue color for the spinner */
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+
+
+  /* <=====loader=======> */
+
+  .l {
+    color: black;
+    opacity: 0;
+    animation: pass 2s ease-in-out infinite;
+    animation-delay: 0.2s;
+    letter-spacing: 0.5em;
+    text-shadow: 2px 2px 3px #919191;
+  }
+  
+  .o {
+    color: black;
+    opacity: 0;
+    animation: pass 2s ease-in-out infinite;
+    animation-delay: 0.4s;
+    letter-spacing: 0.5em;
+    text-shadow: 2px 2px 3px #919191;
+  }
+  
+  .a {
+    color: black;
+    opacity: 0;
+    animation: pass 2s ease-in-out infinite;
+    animation-delay: 0.6s;
+    letter-spacing: 0.5em;
+    text-shadow: 2px 2px 3px #919191;
+  }
+  
+  .d {
+    color: black;
+    opacity: 0;
+    animation: pass 2s ease-in-out infinite;
+    animation-delay: 0.8s;
+    letter-spacing: 0.5em;
+    text-shadow: 2px 2px 3px #919191;
+  }
+  
+  .i {
+    color: black;
+    opacity: 0;
+    animation: pass 2s ease-in-out infinite;
+    animation-delay: 1s;
+    letter-spacing: 0.5em;
+    text-shadow: 2px 2px 3px #919191;
+  }
+  
+  .n {
+    color: black;
+    opacity: 0;
+    animation: pass 2s ease-in-out infinite;
+    animation-delay: 1.2s;
+    letter-spacing: 0.5em;
+    text-shadow: 2px 2px 3px #919191;
+  }
+  
+  .g {
+    color: black;
+    opacity: 0;
+    animation: pass 2s ease-in-out infinite;
+    animation-delay: 1.4s;
+    letter-spacing: 0.5em;
+    text-shadow: 2px 2px 3px #919191;
+  }
+  
+  .d1 {
+    color: black;
+    opacity: 0;
+    animation: pass1 2s ease-in-out infinite;
+    animation-delay: 1.6s;
+    letter-spacing: 0.5em;
+    text-shadow: 2px 2px 3px #919191;
+  }
+  
+  .d2 {
+    color: black;
+    opacity: 0;
+    animation: pass1 2s ease-in-out infinite;
+    animation-delay: 2s;
+    letter-spacing: 0.5em;
+    text-shadow: 2px 2px 3px #919191;
+  }
+  
+  @keyframes pass {
+    0% {
+      opacity: 1;
+    }
+  
+    50% {
+      opacity: 0;
+    }
+  
+    100% { 
+      opacity: 1;
+    }
+  }
+  
+  @keyframes pass1 {
+    0% {
+      opacity: 1;
+    }
+  
+    50% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }

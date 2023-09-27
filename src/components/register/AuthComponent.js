@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:87e63c97605fbece27bd1f92fdce530b06d3a4f3c8e79f972cc7e76d7dd7ddb3
-size 643
+// AuthComponent.js
+
+import React, { useState } from 'react';
+import Login from './login';
+import Signup from './signup';
+import './AuthComponent.css'; // Create this CSS file for styling
+
+const AuthComponent = () => {
+  const [showLogin, setShowLogin] = useState(true);
+
+  const handleToggleForm = () => {
+    setShowLogin(!showLogin);
+  };
+
+  return (
+    <div className="auth-container">
+      <div className={`auth-form-container ${showLogin ? 'login' : 'signup'}`}>
+        {showLogin ? <Login onToggleForm={handleToggleForm} /> : <Signup onToggleForm={handleToggleForm} />}
+      </div>
+    </div>
+  );
+};
+
+export default AuthComponent;

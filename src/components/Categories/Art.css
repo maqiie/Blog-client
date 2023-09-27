@@ -1,3 +1,80 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8999c27b732ad891ad8d384d9913383d687c4588d163b9944c1987637f5fb2e2
-size 1632
+/* Education.css */
+
+/* Style for the wrapper div */
+.education-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Style for each individual blog card */
+.blog-card1 {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.blog-card1 h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+/* Style for the expanded card */
+.blog-card1.expanded {
+  transform: scale(1.05);
+}
+
+/* Style for the post content */
+.post1-content {
+  max-height: 200px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+/* Style for the visible post content */
+.post1-content.visible {
+  max-height: none;
+}
+
+/* Style for the blog image */
+.blog1-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* Style for the "Read More" and "Read Less" button */
+.read-more1 {
+  text-align: center;
+  color: #007bff;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.read-more1:hover {
+  text-decoration: underline;
+}
+
+/* Media Query for Large Screens (Adjust as needed) */
+@media screen and (min-width: 768px) {
+  /* Increase the width of blog cards to fill the screen */
+  .blog-card {
+    width: calc(33.33% - 40px); /* You can adjust the width as needed */
+  }
+}
+
+/* Media Query for Small Screens (e.g., mobile devices) */
+@media screen and (max-width: 767px) {
+  /* Adjust styles for smaller screens here */
+  .blog-card {
+    width: 100%; /* Make cards full-width on small screens */
+  }
+}

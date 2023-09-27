@@ -1,3 +1,29 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4f923632e4275fb8395d853c8a36b53300c0619809a3c180e5615e90a25e6a91
-size 841
+// import React from 'react';
+// import { Route, Navigate } from 'react-router-dom';
+
+// function ProtectedRoute({ element: Component, isAuthenticated, ...rest }) {
+//   return (
+//     <Route
+//       {...rest}
+//       element={isAuthenticated ? <Component /> : <Navigate to="/auth" />}
+//     />
+//   );
+// }
+
+// export default ProtectedRoute;
+import React from 'react';
+import { Route, Navigate } from 'react-router-dom';
+function ProtectedRoute({ element: Component, isLoggedIn, ...rest }) {
+  return isLoggedIn ? <Route {...rest} element={Component} /> : <Navigate to="/signup" />;
+}
+
+// function ProtectedRoute({ element: Component, isLoggedIn, ...rest }) {
+//   return (
+//     <Route
+//       {...rest}
+//       element={isLoggedIn ? <Component /> : <Navigate to="/signup" />}
+//     />
+//   );
+// }
+
+export default ProtectedRoute;

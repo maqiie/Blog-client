@@ -1,3 +1,578 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c0a96f22e889a92624bb22387b2397ce7be6b9f551e2a745cfcafdd03442fa8b
-size 10160
+/* Blog.css */
+
+.blog {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+.h2{
+  text-decoration-line: underline;
+  margin-bottom: 20x;
+}
+
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.post {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  height: 100%; /* Ensure all posts have the same height */
+}
+
+.post:hover {
+  transform: translateY(-5px);
+}
+
+.post-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.post-author {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.post-content {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.post-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+/* Blogs.css */
+
+/* Your existing styles here */
+
+/* Add a media query for larger screens */
+@media (min-width: 768px) {
+  .post-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjust as needed */
+  }
+
+  .post {
+    width: calc(33.33% - 20px); /* Adjust the width and margin as needed */
+    margin-bottom: 20px;
+  }
+}
+
+
+/* Blogs.css */
+
+.thumbs-up-icon,
+.thumbs-down-icon {
+  color: #007bff; /* Default thumbs-up color */
+  font-size: 24px; /* Adjust the font size as needed */
+  margin-right: 10px; /* Add spacing between the icon and text */
+  transition: color 0.2s ease, transform 0.2s ease; /* Add transitions for color and transform */
+  cursor: pointer; /* Add pointer cursor to indicate interactivity */
+}
+
+.thumbs-down-icon {
+  color: #dc3545; /* Default thumbs-down color */
+}
+
+/* Add hover effect for thumbs-up */
+.thumbs-up-icon:hover {
+  color: #0056b3; /* Change color on hover */
+  transform: scale(1.2); /* Scale the icon on hover */
+}
+
+/* Add hover effect for thumbs-down */
+.thumbs-down-icon:hover {
+  color: #c82333; /* Change color on hover */
+  transform: scale(1.2); /* Scale the icon on hover */
+}
+
+/* Add the clicked animation as before */
+.thumbs-up-icon.clicked,
+.thumbs-down-icon.clicked {
+  transform: scale(1.2); /* Scale the icon when it's clicked */
+}
+
+/* Style the likes and dislikes count */
+.likes-count,
+.dislikes-count {
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+/* Add background color to dislikes count for better visibility */
+.dislikes-count {
+  background-color: #c82333;
+  color: #fff; /* Text color for dislikes count */
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+
+
+/* Blog.css */
+
+
+/* Blog.css */
+
+/* Add a class for expanded posts */
+.post.expanded {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: white; /* Set the background color for the expanded post */
+  overflow: auto; /* Enable scrolling for the expanded content if it overflows */
+  padding: 20px; /* Add padding as needed */
+}
+
+
+
+
+/* Hide overflow for collapsed posts and add a "Read More" link */
+.post:not(.expanded) {
+  overflow: hidden;
+  position: relative;
+}
+
+.post:not(.expanded)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Style the "Read More" link */
+.read-more {
+  display: block;
+  text-align: right;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+ 
+
+
+/* <------comments-----> */
+.bookmarkBtn {
+  width: 130px;
+  height: 40px;
+  border-radius: 40px;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: .3s;
+  overflow: hidden;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.062);
+}
+
+.IconContainer2 {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(103, 74, 228);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: .3s;
+}
+
+.icon {
+  border-radius: 1px;
+}
+
+.text {
+  height: 100%;
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(26, 26, 26);
+  z-index: 1;
+  transition-duration: .3s;
+  font-size: 1.04em;
+  font-weight: 600;
+}
+
+.bookmarkBtn:hover .IconContainer2 {
+  width: 120px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.bookmarkBtn:hover .text {
+  transform: translate(10px);
+  width: 0;
+  font-size: 0;
+  transition-duration: .3s;
+}
+
+.bookmarkBtn:active {
+  transform: scale(0.95);
+  transition-duration: .3s;
+}
+
+
+
+
+
+
+
+/* <-------cssss for the comments=========> */
+/* Comment Section Styles */
+.comments-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #fff; /* Background color */
+  border: 1px solid #e0e0e0; /* Border color */
+  border-radius: 8px;
+}
+
+/* Comment Header Styles */
+.comments-section h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Comment List Styles */
+.comments-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Individual Comment Styles */
+.comments-section li {
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  background-color: #f4f4f4; /* Comment background color */
+  border-radius: 8px;
+}
+
+/* Comment Content Styles */
+.comments-section li p {
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+}
+
+/* Input Field to Add a New Comment Styles */
+.comments-section input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-bottom: 2px solid #333; /* Underline effect */
+  border-radius: 0;
+  font-size: 16px;
+}
+
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .comments-section {
+    margin-top: 10px;
+    padding: 10px;
+  }
+
+  .comments-section h4 {
+    font-size: 16px;
+  }
+
+  .comments-section li {
+    margin-bottom: 15px;
+    padding: 10px;
+  }
+
+  .comments-section li p {
+    font-size: 14px;
+  }
+
+  .comments-section input[type="text"] {
+    font-size: 14px;
+  }
+
+  .comments-section button.bookmarkBtn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+
+
+
+/* <===delete=====> */
+
+
+.btn {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border: none;
+  position: relative;
+  border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 5px .2px #00000035;
+  box-shadow: 1px 1px 5px .2px #00000035;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+  transition-delay: .2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: space-between;
+}
+
+.btn:hover {
+  width: 150px;
+  transition-delay: .2s;
+}
+
+.btn:hover > .paragraph {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition-delay: .4s;
+  transition-delay: .4s;
+}
+
+.btn:hover > .icon-wrapper .icon {
+  transform: scale(1.1);
+}
+
+.bnt:hover > .icon-wrapper .icon path {
+  stroke: black;
+}
+
+.paragraph {
+  color: black;
+  visibility: hidden;
+  opacity: 0;
+  font-size: 18px;
+  margin-right: 20px;
+  padding-left: 20px;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  transform: scale(.9);
+  transition: .2s linear;
+}
+
+.icon path {
+  stroke: #000;
+  stroke-width: 2px;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+}
+
+
+
+/* <=====commments like=======> */
+
+
+
+.container1 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+
+}
+
+.container1 {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+  transition: 100ms;
+  overflow: hidden;
+}
+
+.checkmark {
+  top: 0;
+  left: 0;
+  height: 2em;
+  width: 2em;
+  transition: 100ms;
+  animation: dislike_effect 400ms ease;
+}
+
+.container1 input:checked ~ .checkmark path {
+  fill: #FF5353;
+  stroke-width: 0;
+}
+
+.container1 input:checked ~ .checkmark {
+  animation: like_effect 400ms ease;
+}
+
+
+@keyframes like_effect {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes dislike_effect {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* <=====added  a loader */
+
+
+
+.loader {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50px;
+  height: 80px;
+  border-top: 5px solid #fff;
+  border-bottom: 5px solid #fff;
+  position: relative;
+  background: linear-gradient(#FF3D00 30px, transparent 0) no-repeat;
+  background-size: 2px 40px;
+  background-position: 50% 0px;
+  animation: spinx 5s linear infinite;
+}
+
+.loader:before, .loader:after {
+  content: "";
+  width: 40px;
+  left: 50%;
+  height: 35px;
+  position: absolute;
+  top: 0;
+  transform: translatex(-50%);
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 0 0 20px 20px;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: 0 0px;
+  animation: lqt 5s linear infinite;
+}
+
+.loader:after {
+  top: auto;
+  bottom: 0;
+  border-radius: 20px 20px 0 0;
+  animation: lqb 5s linear infinite;
+}
+
+@keyframes lqt {
+  0%, 100% {
+    background-image: linear-gradient(#FF3D00 40px, transparent 0);
+    background-position: 0% 0px;
+  }
+
+  50% {
+    background-image: linear-gradient(#FF3D00 40px, transparent 0);
+    background-position: 0% 40px;
+  }
+
+  50.1% {
+    background-image: linear-gradient(#FF3D00 40px, transparent 0);
+    background-position: 0% -40px;
+  }
+}
+
+@keyframes lqb {
+  0% {
+    background-image: linear-gradient(#FF3D00 40px, transparent 0);
+    background-position: 0 40px;
+  }
+
+  100% {
+    background-image: linear-gradient(#FF3D00 40px, transparent 0);
+    background-position: 0 -40px;
+  }
+}
+
+@keyframes spinx {
+  0%, 49% {
+    transform: rotate(0deg);
+    background-position: 50% 36px;
+  }
+
+  51%, 98% {
+    transform: rotate(180deg);
+    background-position: 50% 4px;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    background-position: 50% 36px;
+  }
+}
+    
+  
