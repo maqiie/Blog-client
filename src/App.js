@@ -20,6 +20,7 @@ import Sports from "./components/Categories/Sports";
 import Technology from "./components/Categories/Technology";
 import Profile from "./components/Profile/Profile";
 import axios from "axios";
+// ehvgewjcegjw?
 
 function App() {
   // const storedToken = localStorage.getItem("authToken"); // Retrieve Bearer token from local storage
